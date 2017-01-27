@@ -1,7 +1,8 @@
-workspace "sqNet"
+workspace "Sq.NET"
 	configurations { "Debug", "Release" }
 	platforms { "Win32", "x64" }
-	targetdir "bin/%{cfg.buildcfg}"
+	location "Build"
+	targetdir "Bin/%{cfg.buildcfg}"
 	defines { "_CRT_SECURE_NO_WARNINGS", "SQDOTNET" }
 
 project "squirrel"
@@ -15,26 +16,15 @@ project "squirrel"
 		"squirrel3.def",
 	}
 
-project "sqNet"
+project "Sq.NET"
 	defines "SQUNICODE"
 	kind "SharedLib"
 	language "C#"
-	files
-	{
-		"sqNet/**.cs",
-	}
+	files "Sq.NET/**.cs"
 
-project "sqREPL"
+project "Sq.REPL"
 	defines "SQUNICODE"
 	kind "ConsoleApp"
 	language "C#"
-	links
-	{
-		"System",
-		"sqNet",
-	}
-	
-	files
-	{
-		"sqREPL/**.cs",
-	}
+	files "Sq.REPL/**.cs"
+	links{"System", "Sq.NET"}
