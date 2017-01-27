@@ -3,7 +3,7 @@ workspace "Sq.NET"
 	platforms { "Win32", "x64" }
 	location "Build"
 	targetdir "Bin/%{cfg.buildcfg}"
-	defines { "_CRT_SECURE_NO_WARNINGS", "SQDOTNET" }
+	defines { "_CRT_SECURE_NO_WARNINGS", "SQVARIANT" }
 
 project "squirrel"
 	kind "SharedLib"

@@ -14,6 +14,9 @@ namespace Squirrel
         public const UnmanagedType StringType = UnmanagedType.LPStr;
 #endif
 
+        // calling convention
+        public const CallingConvention CallConv = CallingConvention.StdCall;
+
         // dll path
         public const string DllName = "squirrel.dll";
 
@@ -44,8 +47,49 @@ namespace Squirrel
         private static Dictionary<IntPtr, SqPrintFunction> _errorFunctions
             = new Dictionary<IntPtr, SqPrintFunction>();
 
-        // user pointer
-        private static object _userPointer;
+        // squirrel variant type
+        [StructLayout(LayoutKind.Sequential)]
+        private struct ISqVariant
+        {
+            public UInt32 type;
+            public Int32 intVal;
+            public float floatVal;
+            public double doubleVal;
+            public IntPtr strVal;
+            public IntPtr wstrVal;
+        }
+
+        private enum ISqVariantType
+        {
+            Integer,
+            Float,
+            Double,
+            String,
+            WideString,
+        };
+
+        // variant handling functions
+        private static object GetObjectForSqVariant(IntPtr ptr)
+        {
+            ISqVariant vt = (ISqVariant)Marshal.PtrToStructure(ptr, typeof(ISqVariant));
+            switch ((ISqVariantType)vt.type)
+            {
+                case ISqVariantType.Integer: return vt.intVal;
+                case ISqVariantType.Float: return vt.floatVal;
+                case ISqVariantType.Double: return vt.doubleVal;
+                case ISqVariantType.String: return Marshal.PtrToStringAnsi(vt.strVal);
+                case ISqVariantType.WideString: return Marshal.PtrToStringUni(vt.wstrVal);
+                default: return null;
+            }
+        }
+
+        private static object[] GetObjectsForSqVariants(IntPtr ptr, int count)
+        {
+            object[] objects = new object[count];
+            for (int i = 0; i < count; i++)
+                objects[i] = GetObjectForSqVariant((IntPtr)(ptr.ToInt64() + i * Marshal.SizeOf(typeof(ISqVariant))));
+            return objects;
+        }
 
         // structs
         public struct Object

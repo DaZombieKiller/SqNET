@@ -19,7 +19,7 @@ namespace Squirrel
         /// Releases a squirrel VM and all related friend VMs.
         /// </summary>
         /// <param name="v">The target VM</param>
-        [DllImport(DllName, EntryPoint = "sq_close")]
+        [DllImport(DllName, EntryPoint = "sq_close", CallingConvention = CallConv)]
         extern public static void Close(IntPtr v);
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Squirrel
         /// </summary>
         /// <param name="v">The target VM</param>
         /// <returns>A pointer to a SQPrintFunction, or null if no function has been set.</returns>
-        //[DllImport(DllName, EntryPoint = "sq_geterrorfunc")]
+        //[DllImport(DllName, EntryPoint = "sq_geterrorfunc", CallingConvention = CallConv)]
         public static SqPrintFunction GetErrorFunc(IntPtr v)
             => _errorFunctions[v];
 
@@ -36,7 +36,7 @@ namespace Squirrel
         /// </summary>
         /// <param name="v">The target VM</param>
         /// <returns>The current VM's foreign pointer</returns>
-        [DllImport(DllName, EntryPoint = "sq_getforeignptr")]
+        [DllImport(DllName, EntryPoint = "sq_getforeignptr", CallingConvention = CallConv)]
         extern public static IntPtr GetForeignPtr(IntPtr v);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Squirrel
         /// </summary>
         /// <param name="v">The target VM</param>
         /// <returns>A pointer to a SQPrintFunction, or null if no function has been set.</returns>
-        //[DllImport(DllName, EntryPoint = "sq_getprintfunc")]
+        //[DllImport(DllName, EntryPoint = "sq_getprintfunc", CallingConvention = CallConv)]
         public static SqPrintFunction GetPrintFunc(IntPtr v)
             => _printFunctions[v];
 
@@ -52,7 +52,7 @@ namespace Squirrel
         /// Returns the version number of the VM.
         /// </summary>
         /// <returns>Version number of the VM (as in SQUIRREL_VERSION_NUMBER)</returns>
-        [DllImport(DllName, EntryPoint = "sq_getversion")]
+        [DllImport(DllName, EntryPoint = "sq_getversion", CallingConvention = CallConv)]
         extern public static int GetVersion();
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Squirrel
         /// </summary>
         /// <param name="v">The target VM</param>
         /// <returns>The state of the VM encoded as an integer value. The following constants are defined: Idle, Running, Suspended</returns>
-        [DllImport(DllName, EntryPoint = "sq_getvmstate")]
+        [DllImport(DllName, EntryPoint = "sq_getvmstate", CallingConvention = CallConv)]
         extern public static VMState GetVMState(IntPtr v);
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Squirrel
         /// <param name="dest">The destination VM</param>
         /// <param name="src">The source VM</param>
         /// <param name="idx">The index in the source stack of the value that has to be moved</param>
-        [DllImport(DllName, EntryPoint = "sq_move")]
+        [DllImport(DllName, EntryPoint = "sq_move", CallingConvention = CallConv)]
         extern public static void Move(IntPtr dest, IntPtr src, int idx);
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Squirrel
         /// <param name="initialstacksize">The size of the stack in slots (number of objects)</param>
         /// <returns>A pointer to the new VM</returns>
         /// <remarks>By default the roottable is shared with the VM passed as first parameter. The new VM lifetime is bound to the "thread" object pushed in the stack and behave like a normal squirrel object.</remarks>
-        [DllImport(DllName, EntryPoint = "sq_newthread")]
+        [DllImport(DllName, EntryPoint = "sq_newthread", CallingConvention = CallConv)]
         extern public static IntPtr NewThread(IntPtr friendvm, int initialstacksize);
 
         /// <summary>
@@ -88,35 +88,35 @@ namespace Squirrel
         /// <param name="initialstacksize">the size of the stack in slots (number of objects)</param>
         /// <returns>A handle to a squirrel vm</returns>
         /// <remarks>The returned VM has to be released with <see cref="Sq.Close(IntPtr)"/></remarks>
-        [DllImport(DllName, EntryPoint = "sq_open")]
+        [DllImport(DllName, EntryPoint = "sq_open", CallingConvention = CallConv)]
         extern public static IntPtr Open(int initialstacksize);
 
         /// <summary>
         /// Pushes the current const table in the stack.
         /// </summary>
         /// <param name="v">The target VM</param>
-        [DllImport(DllName, EntryPoint = "sq_pushconsttable")]
+        [DllImport(DllName, EntryPoint = "sq_pushconsttable", CallingConvention = CallConv)]
         extern public static void PushConstTable(IntPtr v);
 
         /// <summary>
         /// Pushes the registry table in the stack.
         /// </summary>
         /// <param name="v">The target VM</param>
-        [DllImport(DllName, EntryPoint = "sq_pushregistrytable")]
+        [DllImport(DllName, EntryPoint = "sq_pushregistrytable", CallingConvention = CallConv)]
         extern public static void PushRegistryTable(IntPtr v);
 
         /// <summary>
         /// Pushes the current root table in the stack.
         /// </summary>
         /// <param name="v">The target VM</param>
-        [DllImport(DllName, EntryPoint = "sq_pushroottable")]
+        [DllImport(DllName, EntryPoint = "sq_pushroottable", CallingConvention = CallConv)]
         extern public static void PushRootTable(IntPtr v);
 
         /// <summary>
         /// Pops a table from the stack and sets it as the const table.
         /// </summary>
         /// <param name="v">The target VM</param>
-        [DllImport(DllName, EntryPoint = "sq_setconsttable")]
+        [DllImport(DllName, EntryPoint = "sq_setconsttable", CallingConvention = CallConv)]
         extern public static void SetConstTable(IntPtr v);
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Squirrel
         /// </summary>
         /// <param name="v">The target VM</param>
         /// <remarks>The error handler is shared by friend VMs.</remarks>
-        [DllImport(DllName, EntryPoint = "sq_seterrorhandler")]
+        [DllImport(DllName, EntryPoint = "sq_seterrorhandler", CallingConvention = CallConv)]
         extern public static void SetErrorHandler(IntPtr v);
 
         /// <summary>
@@ -132,16 +132,11 @@ namespace Squirrel
         /// </summary>
         /// <param name="v">The target VM</param>
         /// <param name="p">The pointer that has to be set</param>
-        [DllImport(DllName, EntryPoint = "sq_setforeignptr")]
+        [DllImport(DllName, EntryPoint = "sq_setforeignptr", CallingConvention = CallConv)]
         extern public static void SetForeignPtr(IntPtr v, IntPtr p);
 
-        [DllImport(DllName, EntryPoint = "sq_setprintfunc")]
+        [DllImport(DllName, EntryPoint = "sq_setprintfunc", CallingConvention = CallConv)]
         extern private static void NativeSetPrintFunc(IntPtr v, ISqPrintFunction pf, ISqPrintFunction ef);
-
-        // figure out how to do this in a Linux/Mac-friendly way
-        // Mono appears to have VariantClear, at least
-        [DllImport("oleaut32.dll", SetLastError = true)]
-        extern private static int VariantClear(IntPtr pvarg);
 
         /// <summary>
         /// Sets the print function of the virtual machine. This function is used by the built-in function '::print()' to output text.
@@ -153,21 +148,11 @@ namespace Squirrel
         {
             NativeSetPrintFunc(v, (vm, fmt, argc, variant) =>
             {
-                object[] args = variant != null ? Marshal.GetObjectsForNativeVariants(variant, argc) : new object[0];
-                if (variant != null)
-                {
-                    VariantClear(variant);
-                    Marshal.FreeCoTaskMem(variant);
-                }
+                object[] args = argc > 0 ? GetObjectsForSqVariants(variant, argc) : new object[0];
                 printfunc(new VM(v), fmt, args);
             }, (vm, fmt, argc, variant) =>
             {
-                object[] args = variant != null ? Marshal.GetObjectsForNativeVariants(variant, argc) : new object[0];
-                if (variant != null)
-                {
-                    VariantClear(variant);
-                    Marshal.FreeCoTaskMem(variant);
-                }
+                object[] args = argc > 0 ? GetObjectsForSqVariants(variant, argc) : new object[0];
                 errorfunc(new VM(v), fmt, args);
             });
 
@@ -179,7 +164,7 @@ namespace Squirrel
         /// Pops a table from the stack and sets it as the root table.
         /// </summary>
         /// <param name="v">The target VM</param>
-        [DllImport(DllName, EntryPoint = "sq_setroottable")]
+        [DllImport(DllName, EntryPoint = "sq_setroottable", CallingConvention = CallConv)]
         extern public static void SetRootTable(IntPtr v);
 
         /// <summary>
@@ -194,7 +179,7 @@ namespace Squirrel
         ///     return Sq.SuspendVM(v);
         /// }
         /// </example>
-        [DllImport(DllName, EntryPoint = "sq_suspendvm")]
+        [DllImport(DllName, EntryPoint = "sq_suspendvm", CallingConvention = CallConv)]
         extern public static int SuspendVM(IntPtr v);
 
         /// <summary>
@@ -206,7 +191,7 @@ namespace Squirrel
         /// <param name="raiseerror">If true, if a runtime error occurs during the execution of the call, the VM will invoke the error handler</param>
         /// <param name="throwerror">If true, the VM will throw and exception as soon as it is resumed. The exception payload must be set beforehand invoking Sq.ThrowError</param>
         /// <returns>A HRESULT</returns>
-        [DllImport(DllName, EntryPoint = "sq_wakeupvm")]
+        [DllImport(DllName, EntryPoint = "sq_wakeupvm", CallingConvention = CallConv)]
         extern public static int WakeUpVM(IntPtr v, bool resumedret, bool retval, bool raiseerror, bool throwerror);
     }
 }

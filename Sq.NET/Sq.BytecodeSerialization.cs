@@ -5,10 +5,10 @@ namespace Squirrel
 {
     public static partial class Sq
     {
-        [DllImport(DllName, EntryPoint = "sq_readclosure")]
+        [DllImport(DllName, EntryPoint = "sq_readclosure", CallingConvention = CallConv)]
         extern public static int ReadClosure(IntPtr v, SqReadFunc readf, IntPtr up);
 
-        [DllImport(DllName, EntryPoint = "sq_writeclosure")]
+        [DllImport(DllName, EntryPoint = "sq_writeclosure", CallingConvention = CallConv)]
         extern public static int WriteClosure(IntPtr v, SqWriteFunc writef, IntPtr up);
     }
 }

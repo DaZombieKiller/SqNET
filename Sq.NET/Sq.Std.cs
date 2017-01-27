@@ -8,11 +8,11 @@ namespace Squirrel
         public static partial class Std
         {
             // SqStdAux
-            [DllImport(DllName, EntryPoint = "sqstd_seterrorhandlers")]
+            [DllImport(DllName, EntryPoint = "sqstd_seterrorhandlers", CallingConvention = CallConv)]
             extern public static void SetErrorHandlers(IntPtr v);
             public static void SetErrorHandlers(VM v) => SetErrorHandlers(v.Pointer);
 
-            [DllImport(DllName, EntryPoint = "sqstd_printcallstack")]
+            [DllImport(DllName, EntryPoint = "sqstd_printcallstack", CallingConvention = CallConv)]
             extern public static void PrintCallStack(IntPtr v);
             public static void PrintCallStack(VM v) => PrintCallStack(v.Pointer);
 
@@ -21,7 +21,7 @@ namespace Squirrel
             // sqstd_getblob
             // sqstd_getblobsize
 
-            [DllImport(DllName, EntryPoint = "sqstd_register_bloblib")]
+            [DllImport(DllName, EntryPoint = "sqstd_register_bloblib", CallingConvention = CallConv)]
             extern public static int RegisterBlobLib(IntPtr v);
             public static int RegisterBlobLib(VM v) => RegisterBlobLib(v.Pointer);
 
@@ -37,24 +37,24 @@ namespace Squirrel
             // sqstd_createfile
             // sqstd_getfile
 
-            [DllImport(DllName, EntryPoint = "sqstd_loadfile")]
+            [DllImport(DllName, EntryPoint = "sqstd_loadfile", CallingConvention = CallConv)]
             extern public static int LoadFile(IntPtr v, [MarshalAs(StringType)] string filename, bool printerror);
             public static int LoadFile(VM v, string filename, bool printerror) => LoadFile(v.Pointer, filename, printerror);
 
-            [DllImport(DllName, EntryPoint = "sqstd_dofile")]
+            [DllImport(DllName, EntryPoint = "sqstd_dofile", CallingConvention = CallConv)]
             extern public static int DoFile(IntPtr v, [MarshalAs(StringType)] string filename, bool retval, bool printerror);
             public static int DoFile(VM v, string filename, bool retval, bool printerror) => DoFile(v.Pointer, filename, retval, printerror);
 
-            [DllImport(DllName, EntryPoint = "sqstd_writeclosuretofile")]
+            [DllImport(DllName, EntryPoint = "sqstd_writeclosuretofile", CallingConvention = CallConv)]
             extern public static int WriteClosureToFile(IntPtr v, [MarshalAs(StringType)] string filename);
             public static int WriteClosureToFile(VM v, string filename) => WriteClosureToFile(v.Pointer, filename);
 
-            [DllImport(DllName, EntryPoint = "sqstd_register_iolib")]
+            [DllImport(DllName, EntryPoint = "sqstd_register_iolib", CallingConvention = CallConv)]
             extern public static int RegisterIOLib(IntPtr v);
             public static int RegisterIOLib(VM v) => RegisterIOLib(v.Pointer);
 
             // SqStdMath
-            [DllImport(DllName, EntryPoint = "sqstd_register_mathlib")]
+            [DllImport(DllName, EntryPoint = "sqstd_register_mathlib", CallingConvention = CallConv)]
             extern public static int RegisterMathLib(IntPtr v);
             public static int RegisterMathLib(VM v) => RegisterMathLib(v.Pointer);
 
@@ -68,7 +68,7 @@ namespace Squirrel
             // sqstd_rex_getsubexp
 
             // SqStdString
-            [DllImport(DllName, EntryPoint = "sqstd_format")]
+            [DllImport(DllName, EntryPoint = "sqstd_format", CallingConvention = CallConv)]
             extern private static int NativeFormat(IntPtr v, int nformatstringidx, out int outlen, out IntPtr output);
             public static int Format(VM v, int nformatstringidx, out int outlen, out string output) => Format(v.Pointer, nformatstringidx, out outlen, out output);
             public static int Format(IntPtr v, int nformatstringidx, out int outlen, out string output)
@@ -79,12 +79,12 @@ namespace Squirrel
                 return ret;
             }
 
-            [DllImport(DllName, EntryPoint = "sqstd_register_stringlib")]
+            [DllImport(DllName, EntryPoint = "sqstd_register_stringlib", CallingConvention = CallConv)]
             extern public static int RegisterStringLib(IntPtr v);
             public static int RegisterStringLib(VM v) => RegisterStringLib(v.Pointer);
 
             // SqStdSystem
-            [DllImport(DllName, EntryPoint = "sqstd_register_systemlib")]
+            [DllImport(DllName, EntryPoint = "sqstd_register_systemlib", CallingConvention = CallConv)]
             extern public static int RegisterSystemLib(IntPtr v);
             public static int RegisterSystemLib(VM v) => RegisterSystemLib(v.Pointer);
         }
