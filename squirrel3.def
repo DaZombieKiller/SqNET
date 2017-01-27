@@ -1,0 +1,196 @@
+LIBRARY squirrel.dll
+EXPORTS
+	; Virtual Machine
+	sq_close
+	sq_geterrorfunc
+	sq_getforeignptr
+	sq_getprintfunc
+	sq_getversion
+	sq_getvmstate
+	sq_move
+	sq_newthread
+	sq_open
+	sq_pushconsttable
+	sq_pushregistrytable
+	sq_pushroottable
+	sq_setconsttable
+	sq_seterrorhandler
+	sq_setforeignptr
+	sq_setprintfunc
+	sq_setroottable
+	sq_suspendvm
+	sq_wakeupvm
+	
+	; Compiler
+	sq_compile
+	sq_compilebuffer
+	sq_enabledebuginfo
+	sq_notifyallexceptions
+	sq_setcompilererrorhandler
+	
+	; Stack Operations
+	sq_cmp
+	sq_gettop
+	sq_pop
+	sq_poptop
+	sq_push
+	sq_remove
+	sq_reservestack
+	sq_settop
+	
+	; Object creation and handling
+	sq_bindenv
+	sq_createinstance
+	sq_getbool
+	sq_getbyhandle
+	sq_getclosureinfo
+	sq_getclosurename
+	sq_getfloat
+	sq_gethash
+	sq_getinstanceup
+	sq_getinteger
+	sq_getmemberhandle
+	sq_getscratchpad
+	sq_getsize
+	sq_getstring
+	sq_getthread
+	sq_gettype
+	sq_gettypetag
+	sq_getuserdata
+	sq_getuserpointer
+	sq_newarray
+	sq_newclass
+	sq_newclosure
+	sq_newtable
+	sq_newtableex
+	sq_newuserdata
+	sq_pushbool
+	sq_pushfloat
+	sq_pushinteger
+	sq_pushnull
+	sq_pushstring
+	sq_pushuserpointer
+	sq_setbyhandle
+	sq_setclassudsize
+	sq_setinstanceup
+	sq_setnativeclosurename
+	sq_setparamscheck
+	sq_setreleasehook
+	sq_settypetag
+	sq_tobool
+	sq_tostring
+	sq_typeof
+	
+	; Calls
+	sq_call
+	sq_getcallee
+	sq_getlasterror
+	sq_getlocal
+	sq_reseterror
+	sq_resume
+	sq_throwerror
+	sq_throwobject
+	
+	; Objects manipulation
+	sq_arrayappend
+	sq_arrayinsert
+	sq_arraypop
+	sq_arrayremove
+	sq_arrayresize
+	sq_arrayreverse
+	sq_clear
+	sq_clone
+	;sq_createslot - macro
+	sq_deleteslot
+	sq_get
+	sq_getattributes
+	sq_getclass
+	sq_getdelegate
+	sq_getfreevariable
+	sq_getweakrefval
+	sq_instanceof
+	sq_newmember
+	sq_newslot
+	sq_next
+	sq_rawdeleteslot
+	sq_rawget
+	sq_rawnewmember
+	sq_rawset
+	sq_set
+	sq_setattributes
+	sq_setdelegate
+	sq_setfreevariable
+	sq_weakref
+	
+	; Bytecode serialization
+	sq_readclosure
+	sq_writeclosure
+	
+	; Raw object handling
+	sq_addref
+	sq_getobjtypetag
+	sq_getrefcount
+	sq_getstackobj
+	sq_objtobool
+	sq_objtofloat
+	sq_objtointeger
+	sq_objtostring
+	sq_objtouserpointer
+	sq_pushobject
+	sq_release
+	sq_resetobject
+	
+	; Garbage Collector
+	sq_collectgarbage
+	sq_resurrectunreachable
+	
+	; Debug interface
+	sq_getfunctioninfo
+	sq_setdebughook
+	sq_setnativedebughook
+	sq_stackinfos
+
+	; SqStdAux
+	sqstd_seterrorhandlers
+	sqstd_printcallstack
+	
+	; SqStdBlob
+	sqstd_createblob
+	sqstd_getblob
+	sqstd_getblobsize
+	sqstd_register_bloblib
+	
+    ; SqStdIO
+	sqstd_fopen
+	sqstd_fread
+	sqstd_fwrite
+	sqstd_fseek
+	sqstd_ftell
+	sqstd_fflush
+	sqstd_fclose
+	sqstd_feof
+	sqstd_createfile
+	sqstd_getfile
+    sqstd_loadfile
+    sqstd_dofile
+	sqstd_writeclosuretofile
+	sqstd_register_iolib
+	
+	; SqStdMath
+	sqstd_register_mathlib
+	
+	; SqStdRex
+	sqstd_rex_compile
+	sqstd_rex_free
+	sqstd_rex_match
+	sqstd_rex_searchrange
+	sqstd_rex_search
+	sqstd_rex_getsubexpcount
+	sqstd_rex_getsubexp
+	
+	; SqStdString
+	sqstd_format
+	sqstd_register_stringlib
+	
+	; SqStdSystem
+	sqstd_register_systemlib
