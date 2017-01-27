@@ -25,13 +25,13 @@ internal class Program
     void PrintFunc(Sq.VM v, string fmt, params object[] args)
     {
         CFormatToCSharp(ref fmt);
-        Console.WriteLine(fmt, args);
+        Console.Write(fmt, args);
     }
 
     void ErrorFunc(Sq.VM v, string fmt, params object[] args)
     {
         CFormatToCSharp(ref fmt);
-        Console.WriteLine(fmt, args);
+        Console.Write(fmt, args);
     }
 
     void PrintVersionInfo()
@@ -160,7 +160,6 @@ internal class Program
 
     void Interactive(Sq.VM v)
     {
-        const int maxInput = 1024;
         string buffer = string.Empty;
 
         int blocks = 0;
@@ -207,11 +206,6 @@ internal class Program
                 {
                     str = !str;
                     buffer += (char)c;
-                }
-                else if (i > maxInput - 1)
-                {
-                    Console.WriteLine("sq : input line too long");
-                    break;
                 }
                 else
                     buffer += (char)c;
