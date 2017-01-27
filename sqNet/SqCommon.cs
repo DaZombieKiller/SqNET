@@ -29,6 +29,7 @@ namespace Squirrel
         public delegate int SqReadFunc(IntPtr file, IntPtr buf, int size);
         public delegate int SqWriteFunc(IntPtr file, IntPtr p, int size);
         public delegate void SqDebugHook(VM v, int type, string sourcename, int line, string funcname);
+        public delegate int SqLexReadFunc(IntPtr file);
 
         // internal delegates
         private delegate int ISqFunction(IntPtr v);

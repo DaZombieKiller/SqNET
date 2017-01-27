@@ -57,7 +57,7 @@ namespace Squirrel
             public int WakeUpVM(bool resumedret, bool retval, bool raiseerror, bool throwerror) => Sq.WakeUpVM(_vm, resumedret, retval, raiseerror, throwerror);
 
             // SqCompiler
-            public int Compile(IntPtr read, IntPtr p, string sourcename, bool raiseerror) => Sq.Compile(_vm, read, p, sourcename, raiseerror);
+            public int Compile(SqLexReadFunc read, IntPtr p, string sourcename, bool raiseerror) => Sq.Compile(_vm, read, p, sourcename, raiseerror);
             public int CompileBuffer(string s, int size, string sourcename, bool raiseerror) => Sq.CompileBuffer(_vm, s, size, sourcename, raiseerror);
             public void EnableDebugInfo(bool enable) => Sq.EnableDebugInfo(_vm, enable);
             public void NotifyAllExceptions(bool enable) => Sq.NotifyAllExceptions(_vm, enable);
