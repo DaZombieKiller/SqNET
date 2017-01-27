@@ -18,6 +18,7 @@ internal class Program
     {
         int n = 0;
         const string regex = @"(?<!%)(?:%%)*%([\-\+0\ \#])?(\d+|\*)?(\.\*|\.\d+)?([hLIw]|l{1,2}|I32|I64)?([cCdiouxXeEfgGaAnpsSZ])";
+        fmt = fmt.Replace("{", "{{").Replace("}", "}}");
         fmt = Regex.Replace(fmt, regex, (match) => $"{{{n++}}}");
     }
 
