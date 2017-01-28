@@ -14,9 +14,6 @@ namespace Squirrel
         public const UnmanagedType StringType = UnmanagedType.LPStr;
 #endif
 
-        // calling convention
-        public const CallingConvention CallConv = CallingConvention.StdCall;
-
         // dll path
         public const string DllName = "squirrel.dll";
 
@@ -35,10 +32,10 @@ namespace Squirrel
         public delegate int SqLexReadFunc(IntPtr file);
 
         // internal delegates
-        private delegate int ISqFunction(IntPtr v);
-        private delegate void ISqCompilerError(IntPtr v, [MarshalAs(StringType)] string desc, [MarshalAs(StringType)] string source, int line, int column);
-        private delegate void ISqPrintFunction(IntPtr v, [MarshalAs(StringType)] string format, int argc, IntPtr variant);
-        private delegate void ISqDebugHook(IntPtr v, int type, [MarshalAs(StringType)] string sourcename, int line, [MarshalAs(StringType)] string funcname);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)] private delegate int ISqFunction(IntPtr v);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)] private delegate void ISqCompilerError(IntPtr v, [MarshalAs(StringType)] string desc, [MarshalAs(StringType)] string source, int line, int column);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate void ISqPrintFunction(IntPtr v, [MarshalAs(StringType)] string format, int argc, IntPtr variant);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)] private delegate void ISqDebugHook(IntPtr v, int type, [MarshalAs(StringType)] string sourcename, int line, [MarshalAs(StringType)] string funcname);
 
         // print functions
         private static Dictionary<IntPtr, SqPrintFunction> _printFunctions
