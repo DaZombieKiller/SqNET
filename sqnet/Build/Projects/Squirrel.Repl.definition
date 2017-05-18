@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Name="Squirrel.Repl" Path="Squirrel.Repl" Type="Console">
+	<References>
+		<Reference Include="System"/>
+		<Reference Include="System.Core"/>
+		<Reference Include="Squirrel.Net"/>
+	</References>
+	
+	<Files>
+		<Compile Include="Program.cs"/>
+	</Files>
+</Project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Name="Squirrel.Net" Path="Squirrel.Net" Type="Library">
+	<References>
+		<Reference Include="System"/>
+		<Reference Include="System.Core"/>
+	</References>
+	
+	<Files>
+		<Compile Include="Sq.Unmanaged.cs"/>
+		<Compile Include="Sq.Managed.cs"/>
+	</Files>
+</Project>
